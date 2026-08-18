@@ -289,6 +289,12 @@
                     </div>
                 </div>
             </div>
+
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-block px-8 py-4 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)] transform hover:-translate-y-1">
+                    לבחינת אפיון, גלו את הצבע שלכם
+                </a>
+            </div>
         </div>
     </section>
 
@@ -416,14 +422,338 @@
             <div class="timeline-container relative py-10">
                 
                 <!-- Station 1 -->
-                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center">
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center cursor-pointer" onclick="openModal('modal-station-1')">
                     <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20"></div>
                     <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0">
                         <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
                             <span class="text-brand-400 font-bold mb-1 block">תחנה 01</span>
                             <h4 class="text-xl font-bold mb-2">מיפוי ורמזור</h4>
                             <p class="text-slate-400 text-sm leading-relaxed">הערכת פתיחה. העברת מבדק הרמזור לכלל חדר המורים וניתוח הנתונים על ידי ההנהלה ומובילי התוכנית.</p>
+                            <span class="text-brand-300 text-xs mt-2 block underline">לחץ למידע נוסף</span>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Station 2 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center cursor-pointer" onclick="openModal('modal-station-2')">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20 md:transform md:translate-x-1/2"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0 md:text-left">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 02</span>
+                            <h4 class="text-xl font-bold mb-2">חשיפה והדגמה (Quick Win)</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">ישיבת מליאה שבה מובילי ה-AI מדגימים "קסמים" שמפנים זמן. המטרה: שבירת חסמים ופחדים אצל מורים מהקבוצה האדומה.</p>
+                            <span class="text-brand-300 text-xs mt-2 block underline">לחץ למידע נוסף</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 3 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center cursor-pointer" onclick="openModal('modal-station-3')">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 03</span>
+                            <h4 class="text-xl font-bold mb-2">גיבוש אמנה בית ספרית</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">כתיבת תקנון אתיקה, יושרה אקדמית וכללי שימוש מותרים בבינה מלאכותית, בשיתוף הנהלת בית הספר, המורים והתלמידים.</p>
+                            <span class="text-brand-300 text-xs mt-2 block underline">לחץ למידע נוסף</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 4 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center cursor-pointer" onclick="openModal('modal-station-4')">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20 md:transform md:translate-x-1/2"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0 md:text-left">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 04</span>
+                            <h4 class="text-xl font-bold mb-2">צוותים עובדים יחד (Co-working)</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">חיבור מורים (ירוק+צהוב+אדום) ליצירת תוצר פדגוגי משותף. עבודה אישית המייצרת תמיכה חברתית בתוך חדר המורים.</p>
+                            <span class="text-brand-300 text-xs mt-2 block underline">לחץ למידע נוסף</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 5 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center cursor-pointer" onclick="openModal('modal-station-5')">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 05</span>
+                            <h4 class="text-xl font-bold mb-2">פיילוט כיתתי ראשון</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">מורים מהקבוצה הירוקה והצהובה מעבירים שיעור מלא המשלב AI ככלי פעיל עבור התלמידים.</p>
+                            <span class="text-brand-300 text-xs mt-2 block underline">לחץ למידע נוסף</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 6 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center cursor-pointer" onclick="openModal('modal-station-6')">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20 md:transform md:translate-x-1/2"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0 md:text-left">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 06</span>
+                            <h4 class="text-xl font-bold mb-2">שיעורים פתוחים (Peer Learning)</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">מורים מתנגדים/חוששים מוזמנים כצופים בשיעורי הפיילוט, לראות במו עיניהם כיצד הלמידה מתעשרת ולא מאיימת.</p>
+                            <span class="text-brand-300 text-xs mt-2 block underline">לחץ למידע נוסף</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 7 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center cursor-pointer" onclick="openModal('modal-station-7')">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 07</span>
+                            <h4 class="text-xl font-bold mb-2">התלמיד כיצרן ידע</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">העברת השרביט לתלמידים: שימוש בכלים כמו NotebookLM ליצירת תוכן, מחקר וניהול קהילות שיתופיות בכיתה.</p>
+                            <span class="text-brand-300 text-xs mt-2 block underline">לחץ למידע נוסף</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 8 -->
+                <div class="timeline-item relative z-10 w-full flex justify-end md:justify-center cursor-pointer" onclick="openModal('modal-station-8')">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-yellow-400 border-4 border-slate-900 flex-shrink-0 z-20 md:transform md:translate-x-1/2 shadow-[0_0_15px_rgba(250,204,21,0.5)]"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0 md:text-left">
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-xl border border-yellow-500/50 shadow-2xl relative overflow-hidden">
+                            <div class="absolute -top-10 -left-10 w-32 h-32 bg-yellow-500/10 rounded-full blur-2xl"></div>
+                            <span class="text-yellow-400 font-bold mb-1 block">תחנה 08 - קו הסיום</span>
+                            <h4 class="text-xl font-bold mb-2 text-white">הערכת סיום וטקס "תו ה-AI"</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-4">בחינת תוצרי המורים וקביעת זכאות לתעודה. בתי ספר שעמדו ביעד (75%) יזכו בטקס עירוני במענק הצטיינות ועמדת למידה.</p>
+                            <span class="text-yellow-300 text-xs block underline">לחץ למידע נוסף</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modals (Hidden by default) -->
+    <!-- Modal Station 1 -->
+    <div id="modal-station-1" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-1')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 01</span>
+                    <h3 class="text-2xl font-bold text-slate-900">מיפוי ורמזור - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-1', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> להבין היכן עומד כל אחד מאנשי הצוות ביחס לטכנולוגיית ה-AI, לזהות פחדים ולגלות את ה"אלופים" החבויים.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>מועבר שאלון אינטראקטיבי וידידותי (שנבנה על ידינו מראש) לכל המורים.</li>
+                    <li>השאלון בודק אוריינות טכנולוגית בסיסית, הכרות עם כלים, ובעיקר - תפיסות רגשיות ופדגוגיות.</li>
+                    <li>התוצאות מעובדות (בצורה אנונימית למחצה, תלוי בהחלטת הנהלה) ומייצרות "מפת חום" של חדר המורים לפי מודל הרמזור: אדום, צהוב וירוק.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> רשימה שמית וחלוקה לקבוצות עבודה. מנהל/ת בית הספר ומובילי ה-AI יודעים בדיוק את מי צריך ללוות באופן צמוד ואת מי אפשר לשחרר לרוץ קדימה.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-1', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 2 -->
+    <div id="modal-station-2" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-2')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 02</span>
+                    <h3 class="text-2xl font-bold text-slate-900">חשיפה והדגמה (Quick Win) - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-2', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> להמיס את ההתנגדות. הרבה מורים חוששים שה-AI יעמיס עליהם עוד עבודה או יחליף אותם. כאן אנחנו מוכיחים את ההיפך.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>מובילי ה-AI מכנסים את כלל חדר המורים למפגש קצר.</li>
+                    <li>הם מבצעים "הדגמת קסם" חיה: מראים איך משימה שלוקחת שעות (למשל, כתיבת מחוון, תכנון טיול שנתי, או ניסוח אימייל קשה להורה) מתבצעת ב-30 שניות בעזרת ChatGPT או Claude.</li>
+                    <li>הדגש הוא לא על הפדגוגיה בשלב זה, אלא על חיסכון בזמן (ה"כאב" הכי גדול של המורה).</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> שינוי אווירה בחדר המורים מ"עוד פרויקט" ל"רגע, זה יכול לעזור לי אישית מחר בבוקר".</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-2', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 3 -->
+    <div id="modal-station-3" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-3')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 03</span>
+                    <h3 class="text-2xl font-bold text-slate-900">גיבוש אמנה בית ספרית - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-3', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> להסדיר את הגבולות והכללים. כדי למנוע העתקות ותסכול, חייבים ליישר קו לגבי מה מותר ומה אסור.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>צוות היגוי (הכולל מנהלים, מורים ולעתים גם נציגי תלמידים) מגבש מסמך מדיניות בית ספרי.</li>
+                    <li>האמנה עוסקת בשאלות כמו: מתי מותר להשתמש ב-AI להכנת עבודות? איך התלמיד מצהיר על השימוש? מה ההבדל בין שימוש כ"עוזר" לבין העתקה עיוורת? מהם חוקי זכויות היוצרים?</li>
+                    <li>המסמך מופץ לכלל בית הספר ולהורים.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> מסמך "אמנת AI בית ספרית" חתום וברור, המהווה מגן גם למורה וגם לתלמיד.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-3', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 4 -->
+    <div id="modal-station-4" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-4')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 04</span>
+                    <h3 class="text-2xl font-bold text-slate-900">צוותים עובדים יחד (Co-working) - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-4', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> הטמעה מעשית בליווי תומך. המטרה היא להביא את כל המורים ליצור תוצר אמיתי בלי תחושת בדידות.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>מארגנים ישיבות עבודה לפי שכבות או תחומי דעת.</li>
+                    <li>כל קבוצה מקבלת משימה (למשל: לבנות מערך שיעור בנושא מסוים).</li>
+                    <li>הקבוצות נבנות בצורה הטרוגנית: בכל קבוצה יש לפחות מורה אחד "ירוק/צהוב" שיודע לתפעל את המערכות, ומורה "אדום".</li>
+                    <li>המורה האדום תורם מהניסיון הפדגוגי שלו, והמורה הירוק מפעיל את הכלים בהתאם להנחיות.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> מאגר בית ספרי ראשוני של תוצרים (מערכי שיעור, דפי תרגול מותאמים אישית) שנוצרו על ידי הצוות, תוך גיבוש חברתי.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-4', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 5 -->
+    <div id="modal-station-5" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-5')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 05</span>
+                    <h3 class="text-2xl font-bold text-slate-900">פיילוט כיתתי ראשון - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-5', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> יציאה ל"שטח". ליישם את מה שלמדנו בכיתה אמיתית ולראות את תגובת התלמידים.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>המורים ה"ירוקים" וה"צהובים" מעבירים את השיעורים המתוכננים בפועל בכיתותיהם.</li>
+                    <li>השיעור משלב באופן אקטיבי את טכנולוגיות ה-AI (למשל: שימוש בכלי להמחשה ויזואלית, התאמה אישית של רמות קושי בטקסט שניתן לילדים, או יצירת שאלון בזמן אמת).</li>
+                    <li>אוספים פידבק מידי מהתלמידים.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> תחושת הישג פדגוגי, תובנות על מה עובד ומה לא בפורמט כיתתי, ותיעוד ראשוני של הצלחות.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-5', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 6 -->
+    <div id="modal-station-6" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-6')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 06</span>
+                    <h3 class="text-2xl font-bold text-slate-900">שיעורים פתוחים (Peer Learning) - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-6', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> למידת עמיתים ושבירת מחסומים אחרונים אצל מורים שעדיין חוששים ("אדומים").</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>פותחים את הכיתות שבהן מתבצע הפיילוט לצפייה.</li>
+                    <li>מורים החוששים מהטכנולוגיה מוזמנים פשוט לשבת בצד ולצפות כיצד הקסם קורה. הם רואים שהמורה המלמד לא איבד שליטה, ושהטכנולוגיה משרתת אותו ולא מאיימת עליו.</li>
+                    <li>לאחר מכן מתקיים דיון "פוסט-מורטם" במליאה על השיעור: מה היה טוב, אילו אתגרים היו, ואיך אפשר לשפר.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> סחף חיובי בחדר המורים, הצטרפות של מורים נוספים למעגל המתנסים.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-6', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 7 -->
+    <div id="modal-station-7" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-7')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 07</span>
+                    <h3 class="text-2xl font-bold text-slate-900">התלמיד כיצרן ידע - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-7', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> שיא הפדגוגיה. מעבר מהוראה (המורה מעביר מידע בעזרת ה-AI) ללמידה עצמאית ופעילה (התלמיד חוקר ויוצר בעזרת ה-AI).</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>מועברות משימות חקר לתלמידים, כאשר הם מונחים להשתמש בכלים מתקדמים (כמו NotebookLM של גוגל, או כלי מחקר אחרים מבוססי AI).</li>
+                    <li>התלמידים בונים אתרים, מסכמים מקורות, מעבדים נתונים, ואפילו יוצרים סרטונים להצגת עבודת החקר שלהם.</li>
+                    <li>המורה עובר לתפקיד של מנחה (מנטור) המלווה את התלמידים בבחירת המקורות, בהגדרת המשתנים, ובפיקוח על אמינות התוצר והימנעות מ"הזיות" (Hallucinations) של המודל.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> עבודות חקר מרהיבות של התלמידים ברמה גבוהה מאוד, המוכנות להצגה באירוע השיא.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-7', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 8 -->
+    <div id="modal-station-8" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-8')">
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 max-w-2xl w-full shadow-2xl border border-yellow-500/30 transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-yellow-400 font-bold text-sm tracking-wider uppercase">תחנה 08</span>
+                    <h3 class="text-2xl font-bold text-white">הערכת סיום וטקס "תו ה-AI" - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-8', true)" class="text-slate-400 hover:text-white transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-invert max-w-none text-slate-300">
+                <p><strong>מטרת התחנה:</strong> הכרה, הערכה חגיגית, ותגמול בתי הספר שעמדו ביעדים שהוגדרו בתחילת השנה.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li><strong>מבחן איכות למורים:</strong> כל מורה מציג תוצר חינוכי שיישם בכיתה ונוצר בסיוע בינה מלאכותית (ולא במבחן עיוני רגיל). אלו שעומדים בקריטריונים מקבלים תעודה ו"תו AI" אישי בתיק האישי במשרד החינוך.</li>
+                    <li><strong>תו AI בית ספרי:</strong> נבדק אחוז המורים המחזיקים בתו בתוך כל בית ספר. מוסד שהגיע ל-75% ומעלה מהצוות, מוכרז כ"בית ספר מוביל AI".</li>
+                    <li><strong>תגמול ומענקים:</strong> בית הספר זוכה בטקס במענק מיוחד המיועד לחידוש רישיונות בתשלום (Premium) לאתרים נבחרים עבור הצוות לשימוש בשנה הבאה, והוא זוכה גם בעמדת עבודה פיזית מתקדמת (עמדת למידה אינטראקטיבית) שתוצב בספרייה לרווחת התלמידים.</li>
+                </ul>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-700 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-8', true)" class="px-6 py-2 bg-yellow-500 text-slate-900 hover:bg-yellow-400 rounded-lg font-bold transition-colors shadow-lg">סגור חלון</button>
+            </div>
+        </div>
+    </div>
                     </div>
                 </div>
 
@@ -641,6 +971,47 @@
                 navbar.classList.add('py-2');
             }
         });
+
+        // Modal functionality
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const content = modal.querySelector('div');
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Allow display to take effect before animating
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+            
+            // Prevent scrolling on body
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(event, modalId, forceClose = false) {
+            // Close if forced (button click) or if clicking exactly on the overlay background
+            if (forceClose || (event && event.target.id === modalId)) {
+                const modal = document.getElementById(modalId);
+                const content = modal.querySelector('div');
+                
+                modal.classList.remove('opacity-100');
+                modal.classList.add('opacity-0');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+                
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300); // Matches transition duration
+                
+                // Restore scrolling on body
+                document.body.style.overflow = 'auto';
+            }
+        }
     </script>
 </body>
 </html>
