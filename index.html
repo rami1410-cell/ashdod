@@ -3,285 +3,1002 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מובילי בינה בתבונה - אשדוד</title>
+    <title>מרכז החדשנות אשדוד | הכשרת מורים לבינה מלאכותית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&family=Rubik:wght@700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Heebo', sans-serif; }
-        .hero-video-container {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            overflow: hidden;
-            z-index: -1;
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Heebo', 'sans-serif'],
+                        heading: ['Rubik', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6', // Teal
+                            600: '#0d9488',
+                            900: '#134e4a',
+                        },
+                        accent: {
+                            500: '#6366f1', // Indigo
+                        }
+                    }
+                }
+            }
         }
-        .hero-video-container iframe {
-            width: 100vw;
-            height: 56.25vw; /* 16:9 Aspect Ratio */
-            min-height: 100vh;
-            min-width: 177.77vh; /* 16:9 Aspect Ratio */
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: #f8fafc;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Rubik', sans-serif;
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg::before {
+            content: '';
             position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.15) 0%, transparent 50%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
+<body class="text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
-    <!-- סרגל ניווט -->
-    <nav class="fixed w-full z-50 bg-white/95 shadow-md">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- לוגואים -->
-                <div class="flex items-center gap-4">
-                    <img src="https://i.postimg.cc/L6xv1F2M/logo.jpg" alt="עיריית אשדוד" class="h-12 object-contain mix-blend-multiply">
-                    <img src="https://i.postimg.cc/sDtX5QNj/Screenshot-2026-08-19-095607.png" alt="לוגו נוסף" class="h-10 hidden sm:block object-contain mix-blend-multiply">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center gap-4">
+                    <!-- לוגו 1: מוצג תמיד -->
+                    <img src="https://i.postimg.cc/L6xv1F2M/logo.jpg" alt="מובילי בינה בתבונה" class="h-14 w-auto mix-blend-multiply drop-shadow-sm">
+                    <!-- לוגו 2: מוסתר במובייל, מוצג במסכים בגודל sm ומעלה (עודכן ללוגו החדש) -->
+                    <img src="https://i.postimg.cc/sDtX5QNj/Screenshot-2026-08-19-095607.png" alt="לוגו שותפים" class="hidden sm:block h-12 w-auto mix-blend-multiply drop-shadow-sm">
                 </div>
-                <!-- תפריט -->
-                <div class="hidden md:flex space-x-8 space-x-reverse">
-                    <a href="#about" class="text-slate-600 hover:text-blue-600 font-semibold transition">התוכנית</a>
-                    <a href="#ramzor" class="text-slate-600 hover:text-blue-600 font-semibold transition">מבדק הרמזור</a>
-                    <a href="#stations" class="text-slate-600 hover:text-blue-600 font-semibold transition">מסע ההטמעה</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 space-x-reverse items-center">
+                    <a href="#about" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">התוכנית</a>
+                    <a href="#traffic-light" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">מבדק הרמזור</a>
+                    <a href="#syllabus" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">סילבוס המובילים</a>
+                    <a href="#timeline" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">מסע ההטמעה</a>
+                    <a href="#events" class="text-slate-600 hover:text-brand-600 font-medium transition-colors">אירועי שיא</a>
                 </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-slate-900 focus:outline-none p-2">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 shadow-lg">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">התוכנית</a>
+                <a href="#traffic-light" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">מבדק הרמזור</a>
+                <a href="#syllabus" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">סילבוס המובילים</a>
+                <a href="#timeline" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">מסע ההטמעה</a>
+                <a href="#events" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">אירועי שיא</a>
             </div>
         </div>
     </nav>
 
-    <!-- אזור פתיח (Hero) עם סרטון רקע -->
-    <header class="relative flex items-center justify-center h-screen overflow-hidden text-center text-white">
-        <div class="hero-video-container">
-            <iframe src="https://www.youtube.com/embed/hd_F6HCc1wU?autoplay=1&mute=1&loop=1&playlist=hd_F6HCc1wU&controls=0&showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-        <div class="absolute inset-0 bg-slate-900/70"></div> <!-- שכבה כהה לקריאות הטקסט -->
+    <!-- Hero Section -->
+    <header class="text-white pt-32 pb-20 lg:pt-48 lg:pb-32 px-4 relative overflow-hidden">
+        <!-- רקע וידאו יוטיוב -->
+        <iframe class="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0" 
+                src="https://www.youtube.com/embed/hd_F6HCc1wU?autoplay=1&mute=1&loop=1&playlist=hd_F6HCc1wU&controls=0&showinfo=0&rel=0&disablekb=1&modestbranding=1" 
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
         
-        <div class="relative z-10 px-4">
-            <h1 class="text-6xl md:text-8xl font-black mb-6 drop-shadow-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-white">
+        <!-- שכבת כהות כדי שהטקסט יהיה קריא על גבי הסרטון -->
+        <div class="absolute inset-0 bg-slate-900/70 z-10"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] mix-blend-overlay z-10"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-20 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8 text-sm font-medium shadow-[0_0_15px_rgba(20,184,166,0.2)]">
+                <span class="w-2 h-2 rounded-full bg-brand-400 animate-pulse shadow-[0_0_8px_rgba(45,212,191,0.8)]"></span>
+                שנת הלימודים תשפ"ז יוצאת לדרך
+            </div>
+            
+            <h1 class="text-6xl md:text-7xl lg:text-8xl font-bold mb-4 leading-tight font-heading tracking-tight drop-shadow-xl text-white">
                 מובילי בינה בתבונה
             </h1>
-            <h2 class="text-2xl md:text-4xl font-bold mb-8 drop-shadow-lg text-blue-100">
-                מנהיגות פדגוגית בעידן ה-AI<br>הקפיצה החינוכית הבאה של אשדוד
+            
+            <h2 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 leading-tight text-transparent bg-clip-text bg-gradient-to-l from-brand-300 via-brand-400 to-accent-300 drop-shadow-md">
+                מנהיגות פדגוגית בעידן ה-AI <br/>
+                הקפיצה החינוכית הבאה של אשדוד
             </h2>
-            <a href="#about" class="inline-block bg-gradient-to-l from-blue-600 to-blue-400 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition transform duration-300">
-                גלו את התוכנית
-            </a>
+            
+            <p class="mt-4 text-lg md:text-xl text-slate-200 max-w-3xl mx-auto leading-relaxed mb-10 font-light">
+                תוכנית ההכשרה מיועדת לצוותי חלוץ בבתי הספר בעיר להטמעת כלי בינה מלאכותית. 
+                30 שעות של הכשרה מעשית, תהליך הטמעה בית ספרי, ומתן "תו AI" למוסדות מצטיינים.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#about" class="px-8 py-4 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(20,184,166,0.4)] hover:shadow-[0_0_30px_rgba(20,184,166,0.6)] transform hover:-translate-y-1 border border-brand-400/30">
+                    גלו את התוכנית
+                </a>
+                <a href="#syllabus" class="px-8 py-4 bg-white/10 hover:bg-white/20 border border-white/30 hover:border-white/50 text-white font-bold rounded-full transition-all backdrop-blur-md shadow-lg">
+                    צפו בסילבוס
+                </a>
+            </div>
         </div>
+        
+        <!-- Decorative blobs -->
+        <div class="absolute top-1/4 left-10 w-64 h-64 bg-accent-500/40 rounded-full mix-blend-screen filter blur-3xl opacity-70 animate-blob z-10"></div>
+        <div class="absolute top-1/3 right-10 w-72 h-72 bg-brand-500/40 rounded-full mix-blend-screen filter blur-3xl opacity-70 animate-blob animation-delay-2000 z-10"></div>
     </header>
 
-    <!-- 4 עמודות (מודל הפעולה) צבועות בצבעי המותג -->
+    <!-- About / The Concept -->
     <section id="about" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-black text-slate-800">4 צירי הפעולה המרכזיים</h2>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">איך זה עובד? מודל הפעולה</h2>
+                <div class="w-24 h-1 bg-brand-500 mx-auto rounded-full"></div>
+                <p class="mt-6 text-lg text-slate-600 max-w-2xl mx-auto">
+                    התוכנית לא מיועדת רק ליחידי סגולה. המטרה היא לייצר תנועה בית ספרית שלמה המנווטת על ידי צוות חלוץ ומגיעה לכל מורה ולכל תלמיד.
+                </p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- עמודה 1: פיתוח אישי (צהוב עדין) -->
-                <div class="bg-yellow-50 border border-yellow-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition text-center">
-                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1 (New): Personal Development (Yellow/Orange tint from Ashdod logo) -->
+                <div class="p-8 rounded-2xl bg-amber-50/70 border border-amber-100 hover:shadow-xl transition-shadow group">
+                    <div class="w-14 h-14 bg-amber-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-amber-500 transition-colors">
+                        <svg class="w-7 h-7 text-amber-600 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">פיתוח אישי ותגי הצלחה</h3>
-                    <p class="text-slate-600">כל מורה יעבור מסלול התפתחות אישי בבינה מלאכותית. המסלול יתועד, וכל מורה ירכוש מיומנויות שיפורסמו באתר עם תגי הצלחה ייעודיים לציון ההתקדמות.</p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">פיתוח אישי ותגי הצלחה</h3>
+                    <p class="text-slate-700 leading-relaxed text-sm">
+                        כל מורה יעבור מסלול התפתחות אישי ומתועד. המורים יזכו בתגים (Badges) דיגיטליים על הישגיהם, אשר יפורסמו באתר התוכנית העירוני ויהוו גאווה מקצועית.
+                    </p>
                 </div>
 
-                <!-- עמודה 2: צוותי חלוץ (טורקיז/ירוק עדין) -->
-                <div class="bg-green-50 border border-green-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition text-center">
-                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <!-- Card 2: Pioneer Teams (Teal/Turquoise tint) -->
+                <div class="p-8 rounded-2xl bg-teal-50/70 border border-teal-100 hover:shadow-xl transition-shadow group">
+                    <div class="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-teal-500 transition-colors">
+                        <svg class="w-7 h-7 text-teal-600 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">צוותי חלוץ</h3>
-                    <p class="text-slate-600">כל בית ספר ישלח 2-4 מורים להכשרה מעמיקה של 30 שעות (12 פרונטליות והשאר מרחוק). הם יהפכו למובילי ה-AI ויטמיעו את הכלים בחדר המורים.</p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">צוותי חלוץ: "מובילי AI"</h3>
+                    <p class="text-slate-700 leading-relaxed text-sm">
+                        כל בית ספר שולח 2-4 מורים להכשרה מעמיקה של 30 שעות (12 שעות פרונטליות במוקד העירוני ו-18 שעות למידה מרחוק). הם יהפכו למנוע השינוי בבית הספר.
+                    </p>
                 </div>
-
-                <!-- עמודה 3: תו AI (כחול כהה עדין) -->
-                <div class="bg-indigo-50 border border-indigo-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition text-center">
-                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                
+                <!-- Card 3: School AI Mark (Light Blue tint) -->
+                <div class="p-8 rounded-2xl bg-sky-50/70 border border-sky-100 hover:shadow-xl transition-shadow group">
+                    <div class="w-14 h-14 bg-sky-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-sky-500 transition-colors">
+                        <svg class="w-7 h-7 text-sky-600 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                        </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">תו AI בית ספרי</h3>
-                    <p class="text-slate-600">בית ספר שבו 75% מהצוות עוברים מבחן יישומי אישי, יזכה לתו מיוחד, תקציב לרישיונות פרימיום ועמדת לימוד טכנולוגית לתלמידים.</p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">תו AI בית ספרי</h3>
+                    <p class="text-slate-700 leading-relaxed text-sm">
+                        בית ספר שבו 75% מהצוות עוברים מבחן איכות יישומי ומקבלים תו אישי, זוכה ל"תו AI", מענק מיוחד לרישיונות פרימיום ועמדת למידה טכנולוגית לתלמידים.
+                    </p>
                 </div>
-
-                <!-- עמודה 4: חקר (תכלת עדין) -->
-                <div class="bg-blue-50 border border-blue-200 p-8 rounded-2xl shadow-sm hover:shadow-md transition text-center">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                
+                <!-- Card 4: Inquiry-Based Learning (Blue tint) -->
+                <div class="p-8 rounded-2xl bg-blue-50/70 border border-blue-100 hover:shadow-xl transition-shadow group">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-600 transition-colors">
+                        <svg class="w-7 h-7 text-blue-600 group-hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">למידה מבוססת חקר</h3>
-                    <p class="text-slate-600">מעבר להוראה מיושנת, המטרה היא להעביר את השרביט לתלמידים - להשתמש ב-AI להנחיית שאלות חקר ועידוד למידה רב-תחומית.</p>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">למידה מבוססת חקר</h3>
+                    <p class="text-slate-700 leading-relaxed text-sm">
+                        מעבר להוראה טכנית. המטרה היא להעביר את השרביט לתלמידים, להשתמש ב-AI להנחיית שאלות חקר (משתנה תלוי/בלתי תלוי) ועידוד למידה רב-תחומית.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- מבדק הרמזור + כפתור -->
-    <section id="ramzor" class="py-20 bg-slate-100">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-black text-slate-800 mb-4">מבדק הרמזור: איפה אתם נמצאים?</h2>
-                <p class="text-lg text-slate-600 max-w-2xl mx-auto">כדי להתאים את הלמידה, כל מורה בצוות עובר מבדק קצר שממפה את רמת ההיכרות והנכונות שלו.</p>
+    <!-- The Traffic Light Model -->
+    <section id="traffic-light" class="py-20 bg-slate-50 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-brand-600 font-bold tracking-wider text-sm mb-2 block uppercase">אבחון ומיפוי</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">מודל "מבדק הרמזור"</h2>
+                <div class="w-24 h-1 bg-brand-500 mx-auto rounded-full"></div>
+                <p class="mt-6 text-lg text-slate-600 max-w-2xl mx-auto">
+                    בתחילת התהליך, כל חדר המורים עובר שאלון קצר הממפה את גישתם ורמת הידע שלהם בבינה מלאכותית, כדי להתאים להם מעטפת אישית.
+                </p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <!-- ירוק -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border-t-8 border-green-500 relative overflow-hidden">
-                    <h3 class="text-2xl font-bold mb-2 text-slate-800">ירוק</h3>
-                    <p class="text-slate-600 font-semibold mb-4">אוהבי טכנולוגיה ובקיאים.</p>
-                    <p class="text-slate-500 text-sm">היעד שלנו: לתת להם הכשרה מתקדמת, ולהשתמש בהם כדי לשבור חסמים אצל מורים אחרים.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Red -->
+                <div class="bg-white rounded-2xl shadow-sm border-t-4 border-red-500 p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-red-50 rounded-bl-full -mr-2 -mt-2 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold text-xl mb-4">🔴</div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">אדום</h3>
+                        <p class="text-slate-700 font-medium mb-3">חוששים, מתנגדים או לא מכירים כלל.</p>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            <strong>היעד שלנו:</strong> להצמיד להם מורה "ירוק", ולהראות להם כלי אחד פשוט בלבד (Quick Win) שחוסך להם זמן רב ביומיום, כדי לשבור חסמים וליצור אמון.
+                        </p>
+                    </div>
                 </div>
-                <!-- צהוב -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border-t-8 border-yellow-400 relative overflow-hidden">
-                    <h3 class="text-2xl font-bold mb-2 text-slate-800">צהוב</h3>
-                    <p class="text-slate-600 font-semibold mb-4">סקרנים שמכירים כלי או שניים.</p>
-                    <p class="text-slate-500 text-sm">היעד שלנו: לתת להם ביטחון, לחבר אותם לצוותים ירוקים ולקפוץ לפיילוט כיתתי ראשון.</p>
+
+                <!-- Yellow -->
+                <div class="bg-white rounded-2xl shadow-sm border-t-4 border-yellow-400 p-8 relative overflow-hidden transform md:-translate-y-4">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-yellow-50 rounded-bl-full -mr-2 -mt-2 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center font-bold text-xl mb-4">🟡</div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">צהוב</h3>
+                        <p class="text-slate-700 font-medium mb-3">סקרנים, אוהבים ללמוד ומכירים כלי או שניים.</p>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            <strong>היעד שלנו:</strong> לתת להם ביטחון וכלים מעשיים לשילוב בכיתה. חיבור שלהם עם מורים ירוקים ליצירת מערכי שיעור משותפים ומעבר ל"פיילוט כיתתי".
+                        </p>
+                    </div>
                 </div>
-                <!-- אדום -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm border-t-8 border-red-500 relative overflow-hidden">
-                    <h3 class="text-2xl font-bold mb-2 text-slate-800">אדום</h3>
-                    <p class="text-slate-600 font-semibold mb-4">חוששים ומתנגדים.</p>
-                    <p class="text-slate-500 text-sm">היעד שלנו: הצמדת מורה ירוק והדגמת כלי אחד בלבד שחוסך להם זמן רב, ליצירת אמון ראשוני.</p>
+
+                <!-- Green -->
+                <div class="bg-white rounded-2xl shadow-sm border-t-4 border-green-500 p-8 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-green-50 rounded-bl-full -mr-2 -mt-2 z-0"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center font-bold text-xl mb-4">🟢</div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">ירוק</h3>
+                        <p class="text-slate-700 font-medium mb-3">אוהבי טכנולוגיה, בקיאים ומיישמים בפועל.</p>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            <strong>היעד שלנו:</strong> הם יהיו "מובילי ה-AI". ניתן להם הכשרה מתקדמת במיוחד, מנהיגות פדגוגית ואחריות להוביל את שינוי התפיסה בחדר המורים ולקחת תחת חסותם את שאר הצוות.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <!-- כפתור הבחינה -->
-            <div class="flex justify-center mt-8">
-                <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-xl py-4 px-10 rounded-full shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1">
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-block px-8 py-4 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 text-white font-bold rounded-full transition-all shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_30px_rgba(20,184,166,0.5)] transform hover:-translate-y-1">
                     לבחינת אפיון, גלו את הצבע שלכם
-                </button>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- מסע ההטמעה: רק 8 הכרטיסיות (ללא ציר הזמן האנכי) -->
-    <section id="stations" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-black text-slate-800 mb-4">מסע ההטמעה: 8 התחנות בבית הספר</h2>
-                <p class="text-lg text-slate-600 text-center mb-10 max-w-2xl mx-auto">לחצו על כל תחנה כדי לקרוא את הפירוט המלא של התהליך שהצוות יעבור לאורך השנה.</p>
+    <!-- Training Syllabus -->
+    <section id="syllabus" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div class="max-w-2xl">
+                    <span class="text-accent-600 font-bold tracking-wider text-sm mb-2 block uppercase">תוכנית 30 השעות</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">סילבוס הכשרת המובילים</h2>
+                    <p class="text-lg text-slate-600">
+                        תכנית הדרגתית ומקיפה המחולקת ל-4 שלבים. 12 שעות לימוד פיזיות מרוכזות, ו-18 שעות של למידה מרחוק ותרגול אישי.
+                    </p>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <!-- כרטיסיות לחיצות -->
-                <button onclick="openModal('station1')" class="bg-slate-50 hover:bg-blue-50 border border-slate-200 p-6 rounded-xl text-right transition cursor-pointer text-slate-800 font-bold text-lg shadow-sm hover:shadow-md">
-                    תחנה 1: מיפוי ורמזור
-                </button>
-                <button onclick="openModal('station2')" class="bg-slate-50 hover:bg-blue-50 border border-slate-200 p-6 rounded-xl text-right transition cursor-pointer text-slate-800 font-bold text-lg shadow-sm hover:shadow-md">
-                    תחנה 2: חשיפה והדגמה
-                </button>
-                <button onclick="openModal('station3')" class="bg-slate-50 hover:bg-blue-50 border border-slate-200 p-6 rounded-xl text-right transition cursor-pointer text-slate-800 font-bold text-lg shadow-sm hover:shadow-md">
-                    תחנה 3: אמנה בית ספרית
-                </button>
-                <button onclick="openModal('station4')" class="bg-slate-50 hover:bg-blue-50 border border-slate-200 p-6 rounded-xl text-right transition cursor-pointer text-slate-800 font-bold text-lg shadow-sm hover:shadow-md">
-                    תחנה 4: צוותים עובדים יחד
-                </button>
-                <button onclick="openModal('station5')" class="bg-slate-50 hover:bg-blue-50 border border-slate-200 p-6 rounded-xl text-right transition cursor-pointer text-slate-800 font-bold text-lg shadow-sm hover:shadow-md">
-                    תחנה 5: פיילוט כיתתי ראשון
-                </button>
-                <button onclick="openModal('station6')" class="bg-slate-50 hover:bg-blue-50 border border-slate-200 p-6 rounded-xl text-right transition cursor-pointer text-slate-800 font-bold text-lg shadow-sm hover:shadow-md">
-                    תחנה 6: שיעורים פתוחים
-                </button>
-                <button onclick="openModal('station7')" class="bg-slate-50 hover:bg-blue-50 border border-slate-200 p-6 rounded-xl text-right transition cursor-pointer text-slate-800 font-bold text-lg shadow-sm hover:shadow-md">
-                    תחנה 7: התלמיד כיצרן ידע
-                </button>
-                <button onclick="openModal('station8')" class="bg-blue-600 hover:bg-blue-700 text-white border border-blue-600 p-6 rounded-xl text-right transition cursor-pointer font-bold text-lg shadow-md">
-                    תחנה 8: הערכה ותו ה-AI
-                </button>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Stage 1 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-brand-500 transition-colors">
+                    <div class="text-brand-500 font-black text-5xl mb-4 opacity-50">01</div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-4">אוריינות ותשתית</h3>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> סדר וארגון בדרייב והמרחב האישי
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> אתיקה, אזרחות וניהול טביעת רגל רשתית
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> מיומנויות חובה: זיהוי Fake News
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> הנדסת פרומפטים: איך לדבר עם המכונה
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> בניית מצגות אפקטיביות
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Stage 2 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-brand-500 transition-colors">
+                    <div class="text-brand-500 font-black text-5xl mb-4 opacity-50">02</div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-4">ה-AI כעוזר הוראה</h3>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> סיעור מוחות ופיתוח מערכי שיעור
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> התאמת רמות קושי (פרסונליזציה)
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> בניית מחוונים, בחינות ובדיקה אוטומטית
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> מיפוי יעיל של תוכניות לימוד (משרד החינוך)
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> אוטומציה של תקשורת ושיקוף מול ההורים
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Stage 3 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-brand-500 transition-colors">
+                    <div class="text-brand-500 font-black text-5xl mb-4 opacity-50">03</div>
+                    <h3 class="font-bold text-xl text-slate-900 mb-4">כלים מתקדמים בכיתה</h3>
+                    <ul class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> תרגול, סיכום וחקר באמצעות NotebookLM
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> הפקת וידאו ומחוללי תמונות (Midjourney/Canva)
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> משחוק (Gamification) של חומרי לימוד
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> בניית אתר כיתתי/פרויקט אינטרנטי
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-brand-500 mt-1">✓</span> תמיכה חברתית-רגשית (SEL) דרך סימולציות
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Stage 4 -->
+                <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:border-brand-500 transition-colors">
+                    <div class="text-brand-500 font-black text-5xl mb-4 opacity-50">04</div>
+                <h3 class="font-bold text-xl text-slate-900 mb-4">מנהיגות פדגוגית</h3>
+                <ul class="space-y-3 text-sm text-slate-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-brand-500 mt-1">✓</span> למידה רב-תחומית חיבור תחומי דעת
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-brand-500 mt-1">✓</span> ניהול שאלות חקר ומשתנים אקדמיים
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-brand-500 mt-1">✓</span> הקמה ותפעול של סוכנים (AI Agents)
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-brand-500 mt-1">✓</span> לוחות בקרה לאיתור פערים (Data Analytics)
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <span class="text-brand-500 mt-1">✓</span> ה-AI כטיוטור (מורה פרטי) לתלמיד
+                    </li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- אזור החלונות הקופצים (Modals) מוסתר כברירת מחדל -->
-    <!-- מודל 1 -->
-    <div id="station1" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm" onclick="closeModal('station1')">
-        <div class="bg-white rounded-2xl p-8 max-w-lg w-full relative shadow-2xl" onclick="event.stopPropagation()">
-            <button onclick="closeModal('station1')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-800 text-2xl font-bold">&times;</button>
-            <h3 class="text-2xl font-bold mb-4 text-blue-600">תחנה 1: מיפוי ורמזור (הערכת פתיחה)</h3>
-            <p class="text-slate-700 leading-relaxed">בתחנה זו, כלל חדר המורים יעבור את "מבדק הרמזור". צוות ההנהלה ומובילי ה-AI ינתחו את הנתונים וימפו את הצוות לקבוצות (ירוק, צהוב, אדום) על מנת להתאים אישית את המשך תהליך הלמידה והתמיכה לכל מורה בהתאם לקצב ולנכונות שלו.</p>
-        </div>
-    </div>
-    <!-- מודל 2 -->
-    <div id="station2" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm" onclick="closeModal('station2')">
-        <div class="bg-white rounded-2xl p-8 max-w-lg w-full relative shadow-2xl" onclick="event.stopPropagation()">
-            <button onclick="closeModal('station2')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-800 text-2xl font-bold">&times;</button>
-            <h3 class="text-2xl font-bold mb-4 text-blue-600">תחנה 2: חשיפה והדגמה (Quick Win)</h3>
-            <p class="text-slate-700 leading-relaxed">קיום ישיבת מליאה מיוחדת בה מובילי ה-AI בבית הספר מציגים "קסמים" דיגיטליים - כלים פשוטים שמפנים המון זמן. המטרה כאן היא שבירת חסמים ופחדים, במיוחד אצל המורים הנמצאים בקבוצה האדומה, על ידי הדגמת יעילות מיידית.</p>
-        </div>
-    </div>
-    <!-- מודל 3 -->
-    <div id="station3" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm" onclick="closeModal('station3')">
-        <div class="bg-white rounded-2xl p-8 max-w-lg w-full relative shadow-2xl" onclick="event.stopPropagation()">
-            <button onclick="closeModal('station3')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-800 text-2xl font-bold">&times;</button>
-            <h3 class="text-2xl font-bold mb-4 text-blue-600">תחנה 3: גיבוש אמנה בית ספרית</h3>
-            <p class="text-slate-700 leading-relaxed">כתיבה משותפת של תקנון אתיקה ונהלי שימוש בבינה מלאכותית. התהליך ייעשה בשיתוף הנהלת בית הספר, המורים וגם התלמידים, על מנת ליצור גבולות גזרה ברורים לגבי יושרה אקדמית ושימוש מושכל בכלים.</p>
-        </div>
-    </div>
-    <!-- מודל 4 -->
-    <div id="station4" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm" onclick="closeModal('station4')">
-        <div class="bg-white rounded-2xl p-8 max-w-lg w-full relative shadow-2xl" onclick="event.stopPropagation()">
-            <button onclick="closeModal('station4')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-800 text-2xl font-bold">&times;</button>
-            <h3 class="text-2xl font-bold mb-4 text-blue-600">תחנה 4: צוותים עובדים יחד (Co-working)</h3>
-            <p class="text-slate-700 leading-relaxed">שלב מעשי של חיבור בין מורים מהקבוצה הירוקה לאלו מהקבוצה האדומה/צהובה לצורך יצירת תוצר פדגוגי משותף. העבודה המשותפת מספקת תמיכה חברית ומורידה את סף החרדה הטכנולוגית בחדר המורים.</p>
-        </div>
-    </div>
-    <!-- מודל 5 -->
-    <div id="station5" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm" onclick="closeModal('station5')">
-        <div class="bg-white rounded-2xl p-8 max-w-lg w-full relative shadow-2xl" onclick="event.stopPropagation()">
-            <button onclick="closeModal('station5')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-800 text-2xl font-bold">&times;</button>
-            <h3 class="text-2xl font-bold mb-4 text-blue-600">תחנה 5: פיילוט כיתתי ראשון</h3>
-            <p class="text-slate-700 leading-relaxed">המורים שכבר צברו ביטחון מהקבוצות הירוקה והצהובה, יוצאים לשטח ומעבירים שיעור ראשון ושלם המשלב כלי AI בפועל בתוך הכיתה ומול התלמידים, כדי לבחון את הכלים בזמן אמת.</p>
-        </div>
-    </div>
-    <!-- מודל 6 -->
-    <div id="station6" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm" onclick="closeModal('station6')">
-        <div class="bg-white rounded-2xl p-8 max-w-lg w-full relative shadow-2xl" onclick="event.stopPropagation()">
-            <button onclick="closeModal('station6')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-800 text-2xl font-bold">&times;</button>
-            <h3 class="text-2xl font-bold mb-4 text-blue-600">תחנה 6: שיעורים פתוחים (Peer Learning)</h3>
-            <p class="text-slate-700 leading-relaxed">מורים מתנגדים או חוששים (אדומים) מוזמנים להיכנס ולצפות בשיעורי הפיילוט של חבריהם. המטרה היא לראות בעיניים שהשד אינו נורא, ושהלמידה אכן מתעשרת ומשתפרת בזכות הטכנולוגיה, ולא מאיימת על המורה.</p>
-        </div>
-    </div>
-    <!-- מודל 7 -->
-    <div id="station7" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm" onclick="closeModal('station7')">
-        <div class="bg-white rounded-2xl p-8 max-w-lg w-full relative shadow-2xl" onclick="event.stopPropagation()">
-            <button onclick="closeModal('station7')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-800 text-2xl font-bold">&times;</button>
-            <h3 class="text-2xl font-bold mb-4 text-blue-600">תחנה 7: התלמיד כיצרן ידע</h3>
-            <p class="text-slate-700 leading-relaxed">בשלב זה, השרביט עובר לתלמידים. התלמידים יתחילו לעשות שימוש פעיל בכלים מתקדמים כמו NotebookLM, כדי לייצר תוכן בעצמם, לנהל שאלות חקר, ולהוביל קהילות למידה שיתופיות בכיתה.</p>
-        </div>
-    </div>
-    <!-- מודל 8 -->
-    <div id="station8" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm" onclick="closeModal('station8')">
-        <div class="bg-white rounded-2xl p-8 max-w-lg w-full relative shadow-2xl" onclick="event.stopPropagation()">
-            <button onclick="closeModal('station8')" class="absolute top-4 left-4 text-slate-400 hover:text-slate-800 text-2xl font-bold">&times;</button>
-            <h3 class="text-2xl font-bold mb-4 text-blue-600">תחנה 8: הערכת סיום וטקס תו ה-AI</h3>
-            <p class="text-slate-700 leading-relaxed">תחנת הסיום המרגשת. בחינת התוצרים של כלל המורים כדי לקבוע זכאות. בית ספר שבו למעלה מ-75% מהצוות יעברו את המבחן, יזכה רשמית בתו העירוני בטקס מרשים, לצד מענק תקציבי להמשך פיתוח טכנולוגי.</p>
-        </div>
-    </div>
-
-    <!-- פוטר (חלק תחתון) עם הלוגו הישן -->
-    <footer class="bg-slate-900 text-white py-10">
-        <div class="max-w-7xl mx-auto px-4 text-center flex flex-col items-center">
-            <!-- לוגו חותם חיים למטה מרכז -->
-            <div class="bg-white p-4 rounded-xl inline-block mb-6 shadow-md">
-                <img src="https://i.postimg.cc/Qtt4CMY9/לוגו_חותם_חיים_LOGO.jpg" alt="חותם חיים" class="h-16 object-contain">
-            </div>
-            <p class="text-slate-400 text-sm">
-                &copy; 2026 כל הזכויות שמורות. יוזמה עירונית - עיריית אשדוד.
+<!-- Implementation Timeline (8 Stations) - Grid Layout -->
+<section id="timeline" class="py-20 bg-slate-900 text-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="text-center mb-16 relative z-10">
+            <span class="text-brand-400 font-bold tracking-wider text-sm mb-2 block uppercase">הלכה למעשה</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">מסע ההטמעה: 8 התחנות בבית הספר</h2>
+            <div class="w-24 h-1 bg-brand-500 mx-auto rounded-full mb-6"></div>
+            <p class="text-lg text-slate-300 max-w-2xl mx-auto">
+                תהליך מובנה שצוותי החלוץ יעבירו את כלל מורי בית הספר, במטרה להגיע למדד 75% ולזכות בתו ה-AI.
             </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+            
+            <!-- Station 1 -->
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors cursor-pointer group flex flex-col h-full" onclick="openModal('modal-station-1')">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-brand-400 font-bold block">תחנה 01</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-slate-300 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                <h4 class="text-xl font-bold mb-2">מיפוי ורמזור</h4>
+                <p class="text-slate-400 text-sm leading-relaxed flex-grow">הערכת פתיחה. העברת מבדק הרמזור לכלל חדר המורים וניתוח הנתונים על ידי ההנהלה ומובילי התוכנית.</p>
+                <span class="text-brand-300 text-xs mt-4 block underline group-hover:text-brand-400">לחץ למידע נוסף</span>
+            </div>
+
+            <!-- Station 2 -->
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors cursor-pointer group flex flex-col h-full" onclick="openModal('modal-station-2')">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-brand-400 font-bold block">תחנה 02</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-slate-300 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                <h4 class="text-xl font-bold mb-2">חשיפה והדגמה</h4>
+                <p class="text-slate-400 text-sm leading-relaxed flex-grow">ישיבת מליאה שבה מובילי ה-AI מדגימים "קסמים" שמפנים זמן. המטרה: שבירת חסמים ופחדים.</p>
+                <span class="text-brand-300 text-xs mt-4 block underline group-hover:text-brand-400">לחץ למידע נוסף</span>
+            </div>
+
+            <!-- Station 3 -->
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors cursor-pointer group flex flex-col h-full" onclick="openModal('modal-station-3')">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-brand-400 font-bold block">תחנה 03</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-slate-300 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                <h4 class="text-xl font-bold mb-2">גיבוש אמנה</h4>
+                <p class="text-slate-400 text-sm leading-relaxed flex-grow">כתיבת תקנון אתיקה, יושרה אקדמית וכללי שימוש מותרים בבינה מלאכותית, בשיתוף הנהלת בית הספר.</p>
+                <span class="text-brand-300 text-xs mt-4 block underline group-hover:text-brand-400">לחץ למידע נוסף</span>
+            </div>
+
+            <!-- Station 4 -->
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors cursor-pointer group flex flex-col h-full" onclick="openModal('modal-station-4')">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-brand-400 font-bold block">תחנה 04</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-slate-300 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                <h4 class="text-xl font-bold mb-2">עבודה משותפת</h4>
+                <p class="text-slate-400 text-sm leading-relaxed flex-grow">חיבור מורים (ירוק+צהוב+אדום) ליצירת תוצר פדגוגי משותף. עבודה אישית המייצרת תמיכה חברתית.</p>
+                <span class="text-brand-300 text-xs mt-4 block underline group-hover:text-brand-400">לחץ למידע נוסף</span>
+            </div>
+
+            <!-- Station 5 -->
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors cursor-pointer group flex flex-col h-full" onclick="openModal('modal-station-5')">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-brand-400 font-bold block">תחנה 05</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-slate-300 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                <h4 class="text-xl font-bold mb-2">פיילוט כיתתי</h4>
+                <p class="text-slate-400 text-sm leading-relaxed flex-grow">מורים מהקבוצה הירוקה והצהובה מעבירים שיעור מלא המשלב AI ככלי פעיל עבור התלמידים.</p>
+                <span class="text-brand-300 text-xs mt-4 block underline group-hover:text-brand-400">לחץ למידע נוסף</span>
+            </div>
+
+            <!-- Station 6 -->
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors cursor-pointer group flex flex-col h-full" onclick="openModal('modal-station-6')">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-brand-400 font-bold block">תחנה 06</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-slate-300 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                <h4 class="text-xl font-bold mb-2">שיעורים פתוחים</h4>
+                <p class="text-slate-400 text-sm leading-relaxed flex-grow">מורים מתנגדים/חוששים מוזמנים כצופים בשיעורי הפיילוט, לראות במו עיניהם כיצד הלמידה מתעשרת ולא מאיימת.</p>
+                <span class="text-brand-300 text-xs mt-4 block underline group-hover:text-brand-400">לחץ למידע נוסף</span>
+            </div>
+
+            <!-- Station 7 -->
+            <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors cursor-pointer group flex flex-col h-full" onclick="openModal('modal-station-7')">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-brand-400 font-bold block">תחנה 07</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-slate-300 group-hover:bg-brand-500 group-hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                <h4 class="text-xl font-bold mb-2">התלמיד כיצרן ידע</h4>
+                <p class="text-slate-400 text-sm leading-relaxed flex-grow">העברת השרביט לתלמידים: שימוש בכלים כמו NotebookLM ליצירת תוכן, מחקר וניהול קהילות שיתופיות בכיתה.</p>
+                <span class="text-brand-300 text-xs mt-4 block underline group-hover:text-brand-400">לחץ למידע נוסף</span>
+            </div>
+
+            <!-- Station 8 -->
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-xl border border-yellow-500/50 shadow-2xl relative overflow-hidden cursor-pointer group flex flex-col h-full" onclick="openModal('modal-station-8')">
+                <div class="absolute -top-10 -left-10 w-32 h-32 bg-yellow-500/10 rounded-full blur-2xl"></div>
+                <div class="flex items-center justify-between mb-4 relative z-10">
+                    <span class="text-yellow-400 font-bold block">תחנה 08 - קו הסיום</span>
+                    <div class="w-8 h-8 rounded-full bg-slate-700/50 flex items-center justify-center text-yellow-500 group-hover:bg-yellow-500 group-hover:text-slate-900 transition-colors shadow-[0_0_10px_rgba(250,204,21,0.3)]">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                </div>
+                <h4 class="text-xl font-bold mb-2 text-white relative z-10">הערכת סיום וטקס</h4>
+                <p class="text-slate-300 text-sm leading-relaxed flex-grow relative z-10">בחינת תוצרי המורים וקביעת זכאות. בתי ספר שעמדו ביעד יזכו בטקס עירוני במענק הצטיינות ועמדת למידה.</p>
+                <span class="text-yellow-300 text-xs mt-4 block underline group-hover:text-yellow-400 relative z-10">לחץ למידע נוסף</span>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Modals (Hidden by default) -->
+<!-- Modal Station 1 -->
+    <div id="modal-station-1" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-1')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 01</span>
+                    <h3 class="text-2xl font-bold text-slate-900">מיפוי ורמזור - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-1', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> להבין היכן עומד כל אחד מאנשי הצוות ביחס לטכנולוגיית ה-AI, לזהות פחדים ולגלות את ה"אלופים" החבויים.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>מועבר שאלון אינטראקטיבי וידידותי (שנבנה על ידינו מראש) לכל המורים.</li>
+                    <li>השאלון בודק אוריינות טכנולוגית בסיסית, הכרות עם כלים, ובעיקר - תפיסות רגשיות ופדגוגיות.</li>
+                    <li>התוצאות מעובדות (בצורה אנונימית למחצה, תלוי בהחלטת הנהלה) ומייצרות "מפת חום" של חדר המורים לפי מודל הרמזור: אדום, צהוב וירוק.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> רשימה שמית וחלוקה לקבוצות עבודה. מנהל/ת בית הספר ומובילי ה-AI יודעים בדיוק את מי צריך ללוות באופן צמוד ואת מי אפשר לשחרר לרוץ קדימה.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-1', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 2 -->
+    <div id="modal-station-2" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-2')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 02</span>
+                    <h3 class="text-2xl font-bold text-slate-900">חשיפה והדגמה (Quick Win) - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-2', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> להמיס את ההתנגדות. הרבה מורים חוששים שה-AI יעמיס עליהם עוד עבודה או יחליף אותם. כאן אנחנו מוכיחים את ההיפך.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>מובילי ה-AI מכנסים את כלל חדר המורים למפגש קצר.</li>
+                    <li>הם מבצעים "הדגמת קסם" חיה: מראים איך משימה שלוקחת שעות (למשל, כתיבת מחוון, תכנון טיול שנתי, או ניסוח אימייל קשה להורה) מתבצעת ב-30 שניות בעזרת ChatGPT או Claude.</li>
+                    <li>הדגש הוא לא על הפדגוגיה בשלב זה, אלא על חיסכון בזמן (ה"כאב" הכי גדול של המורה).</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> שינוי אווירה בחדר המורים מ"עוד פרויקט" ל"רגע, זה יכול לעזור לי אישית מחר בבוקר".</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-2', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 3 -->
+    <div id="modal-station-3" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-3')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 03</span>
+                    <h3 class="text-2xl font-bold text-slate-900">גיבוש אמנה בית ספרית - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-3', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> להסדיר את הגבולות והכללים. כדי למנוע העתקות ותסכול, חייבים ליישר קו לגבי מה מותר ומה אסור.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>צוות היגוי (הכולל מנהלים, מורים ולעתים גם נציגי תלמידים) מגבש מסמך מדיניות בית ספרי.</li>
+                    <li>האמנה עוסקת בשאלות כמו: מתי מותר להשתמש ב-AI להכנת עבודות? איך התלמיד מצהיר על השימוש? מה ההבדל בין שימוש כ"עוזר" לבין העתקה עיוורת? מהם חוקי זכויות היוצרים?</li>
+                    <li>המסמך מופץ לכלל בית הספר ולהורים.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> מסמך "אמנת AI בית ספרית" חתום וברור, המהווה מגן גם למורה וגם לתלמיד.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-3', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 4 -->
+    <div id="modal-station-4" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-4')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 04</span>
+                    <h3 class="text-2xl font-bold text-slate-900">צוותים עובדים יחד (Co-working) - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-4', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> הטמעה מעשית בליווי תומך. המטרה היא להביא את כל המורים ליצור תוצר אמיתי בלי תחושת בדידות.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>מארגנים ישיבות עבודה לפי שכבות או תחומי דעת.</li>
+                    <li>כל קבוצה מקבלת משימה (למשל: לבנות מערך שיעור בנושא מסוים).</li>
+                    <li>הקבוצות נבנות בצורה הטרוגנית: בכל קבוצה יש לפחות מורה אחד "ירוק/צהוב" שיודע לתפעל את המערכות, ומורה "אדום".</li>
+                    <li>המורה האדום תורם מהניסיון הפדגוגי שלו, והמורה הירוק מפעיל את הכלים בהתאם להנחיות.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> מאגר בית ספרי ראשוני של תוצרים (מערכי שיעור, דפי תרגול מותאמים אישית) שנוצרו על ידי הצוות, תוך גיבוש חברתי.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-4', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 5 -->
+    <div id="modal-station-5" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-5')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 05</span>
+                    <h3 class="text-2xl font-bold text-slate-900">פיילוט כיתתי ראשון - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-5', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> יציאה ל"שטח". ליישם את מה שלמדנו בכיתה אמיתית ולראות את תגובת התלמידים.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>המורים ה"ירוקים" וה"צהובים" מעבירים את השיעורים המתוכננים בפועל בכיתותיהם.</li>
+                    <li>השיעור משלב באופן אקטיבי את טכנולוגיות ה-AI (למשל: שימוש בכלי להמחשה ויזואלית, התאמה אישית של רמות קושי בטקסט שניתן לילדים, או יצירת שאלון בזמן אמת).</li>
+                    <li>אוספים פידבק מידי מהתלמידים.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> תחושת הישג פדגוגי, תובנות על מה עובד ומה לא בפורמט כיתתי, ותיעוד ראשוני של הצלחות.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-5', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 6 -->
+    <div id="modal-station-6" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-6')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 06</span>
+                    <h3 class="text-2xl font-bold text-slate-900">שיעורים פתוחים (Peer Learning) - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-6', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> למידת עמיתים ושבירת מחסומים אחרונים אצל מורים שעדיין חוששים ("אדומים").</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>פותחים את הכיתות שבהן מתבצע הפיילוט לצפייה.</li>
+                    <li>מורים החוששים מהטכנולוגיה מוזמנים פשוט לשבת בצד ולצפות כיצד הקסם קורה. הם רואים שהמורה המלמד לא איבד שליטה, ושהטכנולוגיה משרתת אותו ולא מאיימת עליו.</li>
+                    <li>לאחר מכן מתקיים דיון "פוסט-מורטם" במליאה על השיעור: מה היה טוב, אילו אתגרים היו, ואיך אפשר לשפר.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> סחף חיובי בחדר המורים, הצטרפות של מורים נוספים למעגל המתנסים.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-6', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 7 -->
+    <div id="modal-station-7" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-7')">
+        <div class="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-2xl transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-brand-600 font-bold text-sm tracking-wider uppercase">תחנה 07</span>
+                    <h3 class="text-2xl font-bold text-slate-900">התלמיד כיצרן ידע - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-7', true)" class="text-slate-400 hover:text-slate-600 transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-slate max-w-none text-slate-700">
+                <p><strong>מטרת התחנה:</strong> שיא הפדגוגיה. מעבר מהוראה (המורה מעביר מידע בעזרת ה-AI) ללמידה עצמאית ופעילה (התלמיד חוקר ויוצר בעזרת ה-AI).</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li>מועברות משימות חקר לתלמידים, כאשר הם מונחים להשתמש בכלים מתקדמים (כמו NotebookLM של גוגל, או כלי מחקר אחרים מבוססי AI).</li>
+                    <li>התלמידים בונים אתרים, מסכמים מקורות, מעבדים נתונים, ואפילו יוצרים סרטונים להצגת עבודת החקר שלהם.</li>
+                    <li>המורה עובר לתפקיד של מנחה (מנטור) המלווה את התלמידים בבחירת המקורות, בהגדרת המשתנים, ובפיקוח על אמינות התוצר והימנעות מ"הזיות" (Hallucinations) של המודל.</li>
+                </ul>
+                <p><strong>תוצר השלב:</strong> עבודות חקר מרהיבות של התלמידים ברמה גבוהה מאוד, המוכנות להצגה באירוע השיא.</p>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-100 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-7', true)" class="px-6 py-2 bg-slate-100 text-slate-700 hover:bg-slate-200 rounded-lg font-medium transition-colors">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Station 8 -->
+    <div id="modal-station-8" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 transition-opacity" onclick="closeModal(event, 'modal-station-8')">
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 max-w-2xl w-full shadow-2xl border border-yellow-500/30 transform transition-transform scale-95" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <span class="text-yellow-400 font-bold text-sm tracking-wider uppercase">תחנה 08</span>
+                    <h3 class="text-2xl font-bold text-white">הערכת סיום וטקס "תו ה-AI" - צלילה לעומק</h3>
+                </div>
+                <button onclick="closeModal(null, 'modal-station-8', true)" class="text-slate-400 hover:text-white transition-colors p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div class="prose prose-invert max-w-none text-slate-300">
+                <p><strong>מטרת התחנה:</strong> הכרה, הערכה חגיגית, ותגמול בתי הספר שעמדו ביעדים שהוגדרו בתחילת השנה.</p>
+                <p><strong>איך זה קורה בפועל?</strong></p>
+                <ul>
+                    <li><strong>מבחן איכות למורים:</strong> כל מורה מציג תוצר חינוכי שיישם בכיתה ונוצר בסיוע בינה מלאכותית (ולא במבחן עיוני רגיל). אלו שעומדים בקריטריונים מקבלים תעודה ו"תו AI" אישי בתיק האישי במשרד החינוך.</li>
+                    <li><strong>תו AI בית ספרי:</strong> נבדק אחוז המורים המחזיקים בתו בתוך כל בית ספר. מוסד שהגיע ל-75% ומעלה מהצוות, מוכרז כ"בית ספר מוביל AI".</li>
+                    <li><strong>תגמול ומענקים:</strong> בית הספר זוכה בטקס במענק מיוחד המיועד לחידוש רישיונות בתשלום (Premium) לאתרים נבחרים עבור הצוות לשימוש בשנה הבאה, והוא זוכה גם בעמדת עבודה פיזית מתקדמת (עמדת למידה אינטראקטיבית) שתוצב בספרייה לרווחת התלמידים.</li>
+                </ul>
+            </div>
+            <div class="mt-8 pt-4 border-t border-slate-700 flex justify-end">
+                <button onclick="closeModal(null, 'modal-station-8', true)" class="px-6 py-2 bg-yellow-500 text-slate-900 hover:bg-yellow-400 rounded-lg font-bold transition-colors shadow-lg">סגור חלון</button>
+            </div>
+        </div>
+    </div>
+                    </div>
+                </div>
+
+                <!-- Station 2 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20 md:transform md:translate-x-1/2"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0 md:text-left">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 02</span>
+                            <h4 class="text-xl font-bold mb-2">חשיפה והדגמה (Quick Win)</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">ישיבת מליאה שבה מובילי ה-AI מדגימים "קסמים" שמפנים זמן. המטרה: שבירת חסמים ופחדים אצל מורים מהקבוצה האדומה.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 3 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 03</span>
+                            <h4 class="text-xl font-bold mb-2">גיבוש אמנה בית ספרית</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">כתיבת תקנון אתיקה, יושרה אקדמית וכללי שימוש מותרים בבינה מלאכותית, בשיתוף הנהלת בית הספר, המורים והתלמידים.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 4 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20 md:transform md:translate-x-1/2"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0 md:text-left">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 04</span>
+                            <h4 class="text-xl font-bold mb-2">צוותים עובדים יחד (Co-working)</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">חיבור מורים (ירוק+צהוב+אדום) ליצירת תוצר פדגוגי משותף. עבודה אישית המייצרת תמיכה חברתית בתוך חדר המורים.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 5 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 05</span>
+                            <h4 class="text-xl font-bold mb-2">פיילוט כיתתי ראשון</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">מורים מהקבוצה הירוקה והצהובה מעבירים שיעור מלא המשלב AI ככלי פעיל עבור התלמידים.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 6 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20 md:transform md:translate-x-1/2"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0 md:text-left">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 06</span>
+                            <h4 class="text-xl font-bold mb-2">שיעורים פתוחים (Peer Learning)</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">מורים מתנגדים/חוששים מוזמנים כצופים בשיעורי הפיילוט, לראות במו עיניהם כיצד הלמידה מתעשרת ולא מאיימת.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 7 -->
+                <div class="timeline-item relative z-10 mb-12 md:mb-0 w-full flex justify-end md:justify-center">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-brand-500 border-4 border-slate-900 flex-shrink-0 z-20"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0">
+                        <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 shadow-xl hover:border-brand-500 transition-colors">
+                            <span class="text-brand-400 font-bold mb-1 block">תחנה 07</span>
+                            <h4 class="text-xl font-bold mb-2">התלמיד כיצרן ידע</h4>
+                            <p class="text-slate-400 text-sm leading-relaxed">העברת השרביט לתלמידים: שימוש בכלים כמו NotebookLM ליצירת תוכן, מחקר וניהול קהילות שיתופיות בכיתה.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Station 8 -->
+                <div class="timeline-item relative z-10 w-full flex justify-end md:justify-center">
+                    <div class="timeline-dot absolute right-[14px] md:right-1/2 w-6 h-6 rounded-full bg-yellow-400 border-4 border-slate-900 flex-shrink-0 z-20 md:transform md:translate-x-1/2 shadow-[0_0_15px_rgba(250,204,21,0.5)]"></div>
+                    <div class="timeline-content w-full md:w-1/2 pr-12 md:pr-0 pl-0 md:text-left">
+                        <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-xl border border-yellow-500/50 shadow-2xl relative overflow-hidden">
+                            <div class="absolute -top-10 -left-10 w-32 h-32 bg-yellow-500/10 rounded-full blur-2xl"></div>
+                            <span class="text-yellow-400 font-bold mb-1 block">תחנה 08 - קו הסיום</span>
+                            <h4 class="text-xl font-bold mb-2 text-white">הערכת סיום וטקס "תו ה-AI"</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed mb-4">בחינת תוצרי המורים וקביעת זכאות לתעודה. בתי ספר שעמדו ביעד (75%) יזכו בטקס עירוני במענק הצטיינות ועמדת למידה.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">אירועי שיא והצגת תוצרים</h2>
+                <div class="w-24 h-1 bg-brand-500 mx-auto rounded-full mb-6"></div>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+                    לאורך השנה הלימודים, הלמידה תתחבר לאירועים עירוניים ולאומיים בהם המורים והתלמידים יציגו תוצרים מבוססי טכנולוגיה מתקדמת.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Event 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-lg transition-all">
+                    <div class="h-48 bg-gradient-to-r from-blue-500 to-blue-700 flex flex-col items-center justify-center text-white relative">
+                        <div class="absolute top-4 right-4 bg-white/20 backdrop-blur text-xs px-2 py-1 rounded font-bold">פברואר</div>
+                        <svg class="w-12 h-12 mb-2 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                        <h3 class="text-2xl font-bold text-center px-4">שבוע הסייבר וגלישה בטוחה</h3>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-slate-800 mb-2">נושאי מיקוד:</h4>
+                        <p class="text-sm text-slate-600 mb-4">פייק ניוז, טביעת רגל רשתית, ואתיקה של בינה מלאכותית.</p>
+                        <h4 class="font-bold text-slate-800 mb-2">התוצר להצגה:</h4>
+                        <p class="text-sm text-slate-600">קמפיין מודעות ויזואלי שנוצר במחוללי תמונות, וסרטוני הדרכה להורים המופקים על ידי אווטארים (AI Video).</p>
+                    </div>
+                </div>
+
+                <!-- Event 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-lg transition-all">
+                    <div class="h-48 bg-gradient-to-r from-teal-500 to-green-500 flex flex-col items-center justify-center text-white relative">
+                        <div class="absolute top-4 right-4 bg-white/20 backdrop-blur text-xs px-2 py-1 rounded font-bold">אפריל</div>
+                        <svg class="w-12 h-12 mb-2 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                        </svg>
+                        <h3 class="text-2xl font-bold text-center px-4">שבוע קהילה ורווחה (SEL)</h3>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-slate-800 mb-2">נושאי מיקוד:</h4>
+                        <p class="text-sm text-slate-600 mb-4">רווחה נפשית, נגישות, תקשורת בינאישית, ותמיכה רגשית.</p>
+                        <h4 class="font-bold text-slate-800 mb-2">התוצר להצגה:</h4>
+                        <p class="text-sm text-slate-600">הצגת "סוכני חוסן" (AI Agents) המדמים סימולציות חברתיות, ופרויקטים של הנגשת מידע לאוכלוסיות מיוחדות.</p>
+                    </div>
+                </div>
+
+                <!-- Event 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-lg transition-all">
+                    <div class="h-48 bg-gradient-to-r from-indigo-500 to-purple-600 flex flex-col items-center justify-center text-white relative">
+                        <div class="absolute top-4 right-4 bg-white/20 backdrop-blur text-xs px-2 py-1 rounded font-bold">יוני</div>
+                        <svg class="w-12 h-12 mb-2 opacity-90" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/>
+                        </svg>
+                        <h3 class="text-2xl font-bold text-center px-4">כנס חדשנות וחקר מסכם</h3>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-slate-800 mb-2">נושאי מיקוד:</h4>
+                        <p class="text-sm text-slate-600 mb-4">למידה רב-תחומית, חקר אקדמי ולמידה עצמאית של תלמידים.</p>
+                        <h4 class="font-bold text-slate-800 mb-2">התוצר להצגה:</h4>
+                        <p class="text-sm text-slate-600">יריד חקר בית ספרי בו יוצגו אתרים שנוצרו על ידי תלמידים המציגים תהליך חקר ב-NotebookLM המשלב 2 תחומי דעת ומעלה.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action & Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-16 border-t-4 border-brand-500 relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] mix-blend-overlay"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-right">
+                <div class="max-w-xl">
+                    <h2 class="text-2xl font-bold text-white mb-2">מוכנים להוביל את מהפכת ה-AI באשדוד?</h2>
+                    <p class="text-slate-400 mb-6">מנהלי בתי ספר, הגיע הזמן לבחור את "מובילי ה-AI" שלכם ולשריין מקום בהשתלמות הקרובה.</p>
+                    <button class="px-8 py-3 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-400 hover:to-brand-500 text-white font-bold rounded-full transition-all shadow-[0_0_15px_rgba(20,184,166,0.3)] hover:shadow-[0_0_25px_rgba(20,184,166,0.5)] w-full md:w-auto border border-brand-400/30">
+                        להרשמת צוות בית ספרי
+                    </button>
+                </div>
+                
+                <div class="flex gap-6 opacity-80 mt-8 md:mt-0 items-center">
+                    <img src="data:image/jpeg;base64,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" alt="עיריית אשדוד" class="h-16 w-auto drop-shadow-lg mix-blend-screen opacity-50 hover:opacity-100 transition-all duration-300">
+                    <div class="h-12 w-px bg-slate-700"></div>
+                    <div class="w-16 h-16 bg-slate-800 rounded-xl flex items-center justify-center border border-slate-700 shadow-inner text-sm font-bold text-slate-400 text-center leading-tight">משרד<br/>החינוך</div>
+                </div>
+            </div>
+            
+            <div class="mt-16 pt-8 border-t border-slate-800 text-sm text-center text-slate-500 flex flex-col items-center gap-6">
+                
+                <!-- לוגו חותם חיים שהועבר לפוטר במרכז -->
+                <div class="bg-white p-2 rounded-xl inline-block hover:shadow-lg transition-shadow duration-300">
+                    <img src="https://i.postimg.cc/Qtt4CMY9/לוגו_חותם_חיים_LOGO.jpg" alt="חותם חיים" class="h-12 w-auto mix-blend-multiply">
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-center w-full">
+                    <p>&copy; 2026 תוכנית מובילי AI אשדוד. כל הזכויות שמורות.</p>
+                    <div class="mt-4 md:mt-0 flex gap-4">
+                        <a href="#" class="hover:text-white transition">תקנון אמנה</a>
+                        <a href="#" class="hover:text-white transition">צור קשר</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- סקריפטים (תפריט מובייל וחלונות קופצים) -->
+    <!-- Interactive Scripts -->
     <script>
-        function openModal(id) {
-            const modal = document.getElementById(id);
+        
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('py-2');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('py-2');
+            }
+        });
+
+        // Modal functionality
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const content = modal.querySelector('div');
+            
             modal.classList.remove('hidden');
             modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; // מניעת גלילה של הרקע
+            
+            // Allow display to take effect before animating
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+            
+            // Prevent scrolling on body
+            document.body.style.overflow = 'hidden';
         }
-        function closeModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.remove('flex');
-            modal.classList.add('hidden');
-            document.body.style.overflow = ''; // החזרת הגלילה
+
+        function closeModal(event, modalId, forceClose = false) {
+            // Close if forced (button click) or if clicking exactly on the overlay background
+            if (forceClose || (event && event.target.id === modalId)) {
+                const modal = document.getElementById(modalId);
+                const content = modal.querySelector('div');
+                
+                modal.classList.remove('opacity-100');
+                modal.classList.add('opacity-0');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+                
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300); // Matches transition duration
+                
+                // Restore scrolling on body
+                document.body.style.overflow = 'auto';
+            }
         }
     </script>
 </body>
